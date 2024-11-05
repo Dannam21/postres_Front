@@ -1,0 +1,66 @@
+.comment-form {
+    background-color: #f9f9f9; /* Fondo claro */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    max-width: 400px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .comment-form h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .star-rating {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .star {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .star.filled {
+    color: #ffcc00; /* Color de las estrellas seleccionadas */
+  }
+  
+  .star:hover,
+  .star:hover ~ .star {
+    color: #ffcc00; /* Cambia el color de las estrellas al pasar el mouse */
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+  }
+  
+  .submit-button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3; /* Color más oscuro en hover */
+  }
+  

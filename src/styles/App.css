@@ -6,19 +6,43 @@ body {
   background-color: #f4f4f4;
 }
 
-/* Header Styles */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  padding: 10px 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+
+.navbar {
+    display: flex; /* Usa flexbox para alinear los elementos */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    align-items: center; /* Alinea verticalmente los elementos */
+    padding: 10px 20px; /* Agrega un poco de espacio interior */
+    background-color: #fff; /* Fondo blanco, puedes cambiarlo según tu diseño */
+    border-bottom: 1px solid #ccc; /* Opcional: línea inferior */
+    overflow: hidden; /* Evita que los elementos salgan de la pantalla */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo h1 {
+    margin: 0; /* Elimina márgenes por defecto del h1 */
+}
+
+.nav-links {
+    list-style: none; /* Elimina los puntos de la lista */
+    display: flex; /* Usa flexbox para los elementos de la lista */
+    align-items: center; /* Alinea verticalmente los elementos */
+    padding: 0; /* Elimina el padding por defecto */
+}
+
+.nav-links li {
+    margin: 0 8px; /* Espaciado entre los elementos de la lista */
+}
+
+.cart-btn {
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+.cart-icon {
+    width: 24px; /* Ajusta el tamaño del icono según sea necesario */
+    height: 24px;
 }
 
 .logo h1 {
@@ -26,6 +50,10 @@ header {
   font-size: 1.8rem;
   font-weight: bold;
   color: #333;
+}
+
+nav{
+  display: flex;
 }
 
 nav ul {
@@ -51,7 +79,7 @@ nav ul li a:hover {
 
 /* Hero section styles */
 .hero {
-  padding: 100px 20px; /* Añadir espacio para compensar el header fijo */
+  padding: 20px 20px; /* Añadir espacio para compensar el header fijo */
 }
 
 .hero-images {
@@ -77,12 +105,15 @@ nav ul li a:hover {
 }
 
 .product img {
-  width: 100%; /* Hacer que las imágenes sean 100% del ancho del contenedor */
-  max-width: 300px; /* Limitar el tamaño máximo */
-  height: auto; /* Mantener las proporciones */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  max-width: 100%; /* Mantiene el ancho dentro del contenedor */
+  width: 200px; /* Define un ancho específico */
+  height: auto; /* Mantiene la proporción */
+  object-fit: cover; /* Asegura que la imagen se recorte de manera apropiada */
+  border-radius: 8px; /* Bordes redondeados */
+  margin-bottom: 10px; /* Espacio entre imagen y texto */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 .product h3 {
   font-size: 1.5rem;

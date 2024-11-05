@@ -1,0 +1,100 @@
+/* CarritoModal.css */
+.cart-item-image {
+    width: 100px; /* Cambiar a un tamaño deseado */
+    height: auto; /* Mantener la proporción de aspecto */
+    object-fit: cover; /* Cortar la imagen si es necesario */
+    border-radius: 8px; /* Opcional: redondear esquinas */
+    margin-right: 10px; /* Espacio entre imagen y texto */
+  }
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-bottom: 15px; /* Añade espacio para el borde */
+  border-bottom: 2px solid #e0e0e0; /* Línea de separación */
+}
+
+.cart-item:last-child {
+  border-bottom: none; /* Elimina la raya para el último producto */
+}
+
+  
+  .cart-item-image {
+    width: 60px;
+    height: auto;
+  }
+  
+  .cart-item-details {
+    flex-grow: 1;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cart-item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .cart-item-info p {
+    margin: 0;
+  }
+  
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .quantity-controls button {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    border: 1px solid #f0f0f0;
+    background-color: #1e1d20;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0;
+  }
+  
+  .remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .remove-btn img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .cart-total {
+    text-align: right;
+    margin-top: 20px;
+  }
+  .btn-order {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Espacio superior para separar del total */
+  }
+  
+  .btn-order:hover {
+    background-color: #45a049; /* Verde más oscuro al pasar el ratón */
+  }
+  
+  .quantity-controls button {
+    margin: 0 5px; /* Asegúrate de que haya espacio entre los botones */
+  }
+  
+  .quantity-controls span {
+    font-size: 24px; /* Ajusta el tamaño según tus necesidades */
+    font-weight: bold;
+  }
+  

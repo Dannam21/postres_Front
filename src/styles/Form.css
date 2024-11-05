@@ -1,0 +1,62 @@
+.comment-form {
+    background-color: #f9f9f9; /* Fondo claro */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    max-width: 400px; /* Ancho máximo del formulario */
+    margin: 20px auto; /* Centrar el formulario */
+  }
+  
+  .form-group {
+    margin-bottom: 15px; /* Espaciado entre campos */
+  }
+  
+  label {
+    display: block; /* Mostrar etiquetas como bloques */
+    margin-bottom: 5px; /* Espaciado debajo de las etiquetas */
+    font-weight: bold; /* Negrita para las etiquetas */
+  }
+  
+  select, textarea {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 4px; /* Bordes redondeados */
+    border: 1px solid #ccc; /* Borde gris claro */
+    font-size: 16px; /* Tamaño de fuente */
+  }
+  
+  textarea {
+    resize: none; /* Evitar redimensionar el área de texto */
+    min-height: 80px; /* Altura mínima */
+  }
+  
+  .submit-button {
+    background-color: #4CAF50; /* Color verde */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar */
+    font-size: 16px; /* Tamaño de fuente */
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049; /* Color verde más oscuro al pasar el mouse */
+  }
+  
+  .star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 5px; /* Espacio entre estrellas */
+  }
+  
+  .star {
+    font-size: 30px; /* Tamaño de las estrellas */
+    cursor: pointer;
+    color: lightgray; /* Color de las estrellas vacías */
+  }
+  
+  .star.filled {
+    color: gold; /* Color de las estrellas llenas */
+  }
+  

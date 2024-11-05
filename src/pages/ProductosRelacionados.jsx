@@ -1,72 +1,77 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";  // Importa Slider de react-slick
 import "slick-carousel/slick/slick.css";  // Importa el CSS de slick-carousel
 import "slick-carousel/slick/slick-theme.css";  // Importa el tema de slick-carousel
 import { Link } from 'react-router-dom';  // Importa Link de react-router-dom para la navegación
 import '../styles/index.css';  // Tus propios estilos
+import {API_PRODUCTO} from '../../api';
 
 const ProductosRelacionados = () => {
+  const [productos, setProductos] = useState([]);  // Estado para almacenar productos
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,  // Evita que se repitan los productos si son menos
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: Math.min(4, productos.length),  // Mostrar solo la cantidad de productos disponibles
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: Math.min(3, productos.length),  // Ajustar según la cantidad disponible en pantallas medianas
         }
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: Math.min(2, productos.length),  // Ajustar para pantallas pequeñas
         }
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: Math.min(1, productos.length),  // Solo un producto en pantallas muy pequeñas
         }
       }
     ]
+  };
+  
+
+  // Llamada a la API para obtener productos
+  useEffect(() => {
+    const fetchProductos = async () => {
+      try {
+        const response = await fetch(`${API_PRODUCTO}/productos/pageable/?skip=0&limit=10`); // Reemplaza con tu endpoint
+        const data = await response.json();
+        setProductos(data);  // Actualiza el estado con los productos obtenidos
+      } catch (error) {
+        console.error("Error al obtener los productos:", error);
+      }
+    };
+
+    fetchProductos();  // Llama a la función
+  }, []);  // Ejecutar una vez al montar el componente
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div className="related-products">
       <h2>Más productos</h2>
       <Slider {...settings}>
-
-        <div className="related-product">
-          <Link to="/producto/torta">
-            <img src="/src/img/torta1.png" alt="Torta" className="product-image" />
-            <p>TORTA LA CÁBALA</p>
-          </Link>
-        </div>
-        
-        <div className="related-product">
-          <Link to="/producto/cheesecake">
-            <img src="/src/img/cheesecake.png" alt="Florencia" className="product-image" />
-            <p>CHEESECAKE DE FRESA</p>
-          </Link>
-        </div>
-
-
-        <div className="related-product">
-          <Link to="/producto/galleta">
-            <img src="/src/img/galleta.png" alt="Cheesecake" className="product-image" />
-            <p>GALLETA</p>
-          </Link>
-        </div>
-
-        <div className="related-product">
-          <Link to="/producto/torta">
-            <img src="/src/img/torta.png" alt="Chocovainilla" className="product-image" />
-            <p>TORTA DE CHOCOLATE</p>
-          </Link>
-        </div>
+        {productos.map((producto) => (
+          <div className="related-product" key={producto.id}>
+            <Link to={`/producto/${producto.id}`} onClick={handleScrollToTop}>
+              <img 
+                src={producto.imagen}  // Aquí se usa la URL de la imagen
+                alt={producto.nombre}
+                className="product-image"
+              />
+              <p>{producto.nombre}</p>
+            </Link>
+          </div>
+        ))}
       </Slider>
 
       <footer>

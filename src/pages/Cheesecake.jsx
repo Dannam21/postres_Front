@@ -1,18 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';  // Importa useEffect
 import '../styles/index.css';
-import ProductosRelacionados from './ProductosRelacionados';  // Asegúrate de que la ruta es correcta
-import Slider from 'react-slick';  // Slider si usas react-slick para el carrusel
+import ProductosRelacionados from './ProductosRelacionados';
+import { CartContext } from '../context/CartContext';  // Importa el CartContext
+import {API_PRODUCTO} from '../../api';
 
 const Cheesecake = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState("/src/img/cheesecake.png");
+  const [price, setPrice] = useState(0);  // Estado para almacenar el precio
+  const [description, setDescription] = useState("");  // Estado para almacenar la descripción
+  const [name, setName] = useState("");  // Estado para almacenar el nombre del producto
+
+  // Obtén la función addItemToCart del contexto
+  const { addItemToCart } = useContext(CartContext);
+
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        const response = await fetch(`${API_PRODUCTO}/productos/3`);  // Reemplaza con tu endpoint para obtener el producto por ID
+        if (!response.ok) {
+          throw new Error("Error al obtener el producto");
+        }
+        const data = await response.json();
+        setName(data.nombre);  // Almacena el nombre del producto en el estado
+        setPrice(data.precio);  // Almacena el precio en el estado
+        setDescription(data.descripcion);  // Almacena la descripción en el estado
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchProductDetails();
+  }, []);  // Ejecutar solo una vez al montar el componente
 
   const handleQuantityChange = (e) => {
     setQuantity(e.target.value);
   };
 
   const handleImageClick = (imageSrc) => {
-    setSelectedImage(imageSrc);  // Cambiar la imagen principal al hacer clic en una miniatura
+    setSelectedImage(imageSrc);
+  };
+
+  // Función para manejar el clic en "Añadir al Carrito"
+  const handleAddToCart = () => {
+    const item = {
+      id: 3,  // Asegúrate de incluir el ID del producto
+      name,  // Utiliza el nombre desde el estado
+      description,  // Incluye la descripción desde el estado
+      price,
+      quantity,
+      image: selectedImage,
+      size: "Mediano",  // Puedes agregar más detalles según sea necesario
+    };
+
+    addItemToCart(item);  // Añadir el producto al carrito
+    alert("Producto añadido al carrito!");  // Alerta opcional para notificar al usuario
   };
 
   return (
@@ -20,7 +62,6 @@ const Cheesecake = () => {
       <main>
         <section className="product-images">
           <div className="thumbnails">
-            {/* Las miniaturas que cambian la imagen principal al hacer clic */}
             <img 
               src="/src/img/fresa2.png" 
               alt="Cheesecake de maracuyá" 
@@ -42,20 +83,18 @@ const Cheesecake = () => {
               onClick={() => handleImageClick("/src/img/fresa1.png")} 
             />
           </div>
-          
-          {/* Imagen principal que cambia según la miniatura seleccionada */}
+
           <div className="main-image">
             <img src={selectedImage} alt="Imagen de cheesecake" />
           </div>
         </section>
 
         <section className="product-details">
-          <h1>Cheesecake de fresa</h1>
+          <h1>{name}</h1>  {/* Muestra el nombre desde el estado */}
           <p>Descripción:</p>
-          <p>Nuestro cheesecake de fresa es una delicia suave y cremosa que combina lo mejor de la repostería artesanal. Hecho con los ingredientes más frescos, cada bocado es una experiencia única. La base crujiente de galleta y mantequilla complementa a la perfección el relleno de queso, creando una textura irresistible. Ideal para cualquier ocasión, este cheesecake es la opción perfecta para sorprender a tus invitados o darte un gusto especial.</p>
-          <p>Precio: S/60.00 </p>
+          <p>{description}</p> {/* Muestra la descripción desde el estado */}
+          <p>Precio: S/{price.toFixed(2)} </p> {/* Muestra el precio desde el estado */}
           <p>Categoría: Cheesecake</p>
-
 
           <div className="quantity-control">
             <button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
@@ -68,14 +107,12 @@ const Cheesecake = () => {
             <button onClick={() => setQuantity(quantity + 1)}>+</button>
           </div>
 
-          <button className="add-to-cart">Añadir al Carrito</button>
+          <button className="add-to-cart" onClick={handleAddToCart}>Añadir al Carrito</button>  {/* Agregar evento onClick */}
         </section>
       </main>
       <ProductosRelacionados />
     </div>
-
   );
 };
-//a
 
 export default Cheesecake;

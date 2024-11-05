@@ -1,0 +1,130 @@
+.comments-wrapper {
+  padding: 40px;
+  background-color: #f9f9f9; /* Fondo gris claro y más neutral */
+  border-radius: 20px;
+  width: 95%; /* Aumenta el ancho adaptativo */
+  max-width: 1200px; /* Limita el ancho máximo */
+  margin: 40px auto; /* Centrar con más espacio alrededor */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra suave y elegante */
+}
+
+.comments-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333333; /* Texto más oscuro para contraste */
+}
+
+.review-highlight {
+  color: #ff4081; /* Resaltar texto clave en rosa */
+}
+
+.comments-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 85%; /* Ajuste ancho para mejor experiencia de scroll */
+  scroll-behavior: smooth;
+  gap: 20px; /* Espaciado entre tarjetas */
+  padding-bottom: 15px; /* Espacio bajo las tarjetas */
+}
+
+.comment-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Sombra un poco más prominente */
+  padding: 20px;
+  margin: 0 10px;
+  width: 280px;
+  min-height: 220px; /* Más altura mínima */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Efecto hover */
+}
+
+.comment-stars {
+  color: #ffcc00; /* Color más vibrante para estrellas */
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.comment-text {
+  color: #555555; /* Texto más oscuro para mejor legibilidad */
+  font-size: 16px;
+  margin: 15px 0;
+  word-wrap: break-word;
+  white-space: normal;
+  line-height: 1.5; /* Mejorar el espacio entre líneas */
+}
+
+.comment-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.comment-avatar {
+  width: 45px; /* Tamaño más grande del avatar */
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+  border: 2px solid #000000; /* Borde rosa alrededor del avatar */
+}
+
+.comment-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinear información del usuario a la izquierda */
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333333;
+}
+
+.comment-date {
+  font-size: 12px;
+  color: #888888;
+  margin-top: 5px;
+}
+
+.scroll-button {
+  background-color: #000000; /* Cambiar a rosa vibrante */
+  color: white;
+  border: none;
+  font-size: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+}
+
+.scroll-button:hover {
+  background-color: #000000; /* Hover más oscuro */
+}
+
+.scroll-button.left {
+  left: -20px; /* Ajuste de posición fuera del contenedor */
+}
+
+.scroll-button.right {
+  right: -20px; /* Ajuste de posición fuera del contenedor */
+}

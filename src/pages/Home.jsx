@@ -1,61 +1,62 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Importar Link de React Router
-import "../styles/App.css"; // Corregir la ruta para App.css
-import cookieImage from "../img/banner.png"; // Corregir la ruta para la imagen
-import cheesecake from "../img/cheesecake.png";
-import galleta from "../img/galleta.png";
-import torta from "../img/torta.png";
-import "../styles/index.css"; // Corregir la ruta para index.css
-import ProductosRelacionados from "./ProductosRelacionados";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; 
+import "../styles/App.css"; 
+import cookieImage from "../img/banner.png"; 
+import "../styles/index.css"; 
+import {API_PRODUCTO} from '../../api';
 
 const Home = () => {
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    const fetchProductos = async () => {
+      try {
+        const response = await fetch(`${API_PRODUCTO}/productos/pageable/?skip=0&limit=10`);
+        if (!response.ok) {
+          throw new Error("Error al obtener productos");
+        }
+        const data = await response.json();
+        setProductos(data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchProductos();
+  }, []);
+
+  // Función para desplazarse hacia arriba
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div>
-      {/* Hero Section */}
       <section className="hero">
         <div className="hero-images">
           <img src={cookieImage} alt="Cookie" className="cookie-image" />
         </div>
       </section>
 
-       {/* Título Productos */}
-       <div className="productos-title">
+      <div className="productos-title">
         <h2>Productos</h2>
       </div>
 
-      {/* Productos */}
       <section className="productos">
-        <div className="product">
-          <img src={torta} alt="Torta" className="torta-image" />
-          <Link to="/producto/torta">
-            <button className="torta-btn">Tortas</button>
-          </Link>
-        </div>
-
-        <div className="product">
-          <div className="image-container">
-            <img
-              src={cheesecake}
-              alt="Cheesecake"
-              className="cheesecake-image"
+        {productos.map((producto) => (
+          <div className="product" key={producto.id}>
+            <img 
+              src={producto.imagen}  // Aquí se usa la URL de la imagen
+              alt={producto.nombre}
+              className="producto-image"
             />
-            <Link to="/producto/cheesecake">
-              <button className="cheesecake-btn">Cheesecakes</button>
+            <Link to={`/producto/${producto.id}`} onClick={handleScrollToTop}>
+              <button className="producto-btn">{producto.nombre}</button>
             </Link>
           </div>
-        </div>
-
-        <div className="product">
-          <img src={galleta} alt="Galleta" className="galleta-image" />
-          {/* Añadir un botón debajo de la imagen */}
-          <Link to="/producto/galleta">
-            <button className="galleta-btn">Galletas</button>
-          </Link>
-        </div>
+        ))}
       </section>
 
-
-      {/* Footer */}
       <footer>
         <div className="footer-info">
           <div className="pages"></div>
@@ -84,7 +85,7 @@ const Home = () => {
         </div>
         <p className="footer-text">© 2024 Dolce Bakery. Todos los derechos reservados.</p>
       </footer>
-      </div>
+    </div>
   );
 };
 
